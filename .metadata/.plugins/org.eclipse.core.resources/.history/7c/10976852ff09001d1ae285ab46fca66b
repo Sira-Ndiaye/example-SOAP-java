@@ -1,0 +1,57 @@
+package domaine;
+
+import java.util.Scanner;
+
+public class Client{
+	public static void main(String[] args) {
+		
+		UserServices userServices= new UserServicesService().getUserServicesPort();
+		
+		System.out.println("----------------------BIENVENUE SUR NOTRE PLATEFORME----------------------");
+		
+		System.out.println("Veuillez-vous identifier:");
+		Scanner sc = new Scanner(System.in);
+		String userName=sc.next();
+		String password=sc.next();
+		
+		boolean result = userServices.seConnecter(userName,password);
+		
+		if(result) {
+			
+//			System.out.println("Choissez une operation");
+//			System.out.println("1 -> Affichez la liste des etudiants");
+//			System.out.println("2 -> Ajouter un etudiant");
+//			System.out.println("3 -> modifier un etudiant");
+//			System.out.println("4 -> Suprimer un etudiant");
+//	    	choice=sc.nextInt();
+//	    	while(true) {
+//	    		while(choice<=0||choice>4){
+//	    	    	System.out.println("Réessayer");
+//	    	    	choice=sc.nextInt();
+//	    	    }
+//	    	    
+//	    	    switch(choice){
+//	    	      case 1:
+//	    	    	  System.out.println(etudiantsWS.affiche());
+//	    	          break;
+//	    	      case 2:
+//	    	    	  System.out.println(etudiantsWS.ajouter("DIOP", "Mouhammed"));
+//	    	    	  break;
+//	    	      case 3:
+//	    	    	  System.out.println(etudiantsWS.modifier(5, "Ibrahima", "Ndiaye"));
+//	    	    	  break;
+//	    	      case 4:
+//	    	    	  System.out.println(etudiantsWS.supprimer(4));
+//	    	    	  break;
+//	    	  
+//	    	      default:
+//	    	    	  System.out.println("rien");
+//	    	          break;
+//	    	    }
+//	    	    choice=0;
+//	    	}
+			
+		}else {
+		}
+	}
+}

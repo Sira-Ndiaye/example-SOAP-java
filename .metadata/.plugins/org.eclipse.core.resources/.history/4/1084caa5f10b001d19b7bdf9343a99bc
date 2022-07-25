@@ -1,0 +1,74 @@
+package service;
+
+import java.util.Date;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class Article {
+	private int id;
+	private int categorie;
+	private Date dateCreation;
+	private Date dateModification;
+	private String titre;
+	private String content;
+	private String auteur;
+	
+	public Article() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Article(int id, int categorie, String titre, String content, String auteur) {
+		super();
+		this.id = id;
+		this.categorie = categorie;
+		this.titre = titre;
+		this.content = content;
+		this.auteur = auteur;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getCategorie() {
+		return categorie;
+	}
+	public void setCategorie(int categorie) {
+		this.categorie = categorie;
+	}
+	public String getTitre() {
+		return titre;
+	}
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getAuteur() {
+		return auteur;
+	}
+	public void setAuteur(String auteur) {
+		this.auteur = auteur;
+	}
+	public Date getDateCreation() {
+		return dateCreation;
+	}
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+	public Date getDateModification() {
+		return dateModification;
+	}
+	public void setDateModification(Date dateModification) {
+		this.dateModification = dateModification;
+	}
+	
+	
+}

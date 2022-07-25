@@ -1,0 +1,48 @@
+package service;
+
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+@Path("/news")
+public class NewsRestService {
+	
+	@GET
+	@Path("/allArticles")
+	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+	public List <Article> getAllArticles(){
+		List <Article> list=null;
+		return list;
+	
+	}
+	@GET
+	@Path("/allArticlesGroupByCategory")
+	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+	public List <Article> getAllArticlesGroupByCategory(){
+		List <Article> list=null;
+		return list;
+	}
+	
+	
+	@GET
+	@Path("/articlesForACategory")
+	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+	public List <Article> getArticleByCategory(){
+		List <Article> list=null;
+		return list;
+	}
+	
+	
+	@GET
+	@Path("/double/{montant}")
+	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+	public int getDouble(@PathParam(value="montant") int nb){
+		return nb*2;
+	}
+}
+
+

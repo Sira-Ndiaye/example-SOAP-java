@@ -1,0 +1,127 @@
+package domaine;
+
+import db.BdAccess;
+import domaine.User.UserType;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+import javax.jws.WebParam;
+
+@WebService
+public class UserServices {
+	
+	@WebMethod(operationName="tousUtilisateurs")
+	public List <User> getAllUsers() {
+		List<User> users=new ArrayList<User>();
+		
+		BdAccess db = new BdAccess();
+		try {
+			Connection connection = db.connectToDB();
+			Statement statement = connection.createStatement();
+			String req = "SELECT * FROM users ";
+			ResultSet rs= statement.executeQuery(req);
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String userName = rs.getString("username");
+				String password = rs.getString("password");
+				UserType userType = UserType.valueOf(rs.getString("usertype"));
+				
+				User u = new User(id,userName,password,userType);
+				users.add(u);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Nous rencontrons des problemes internes. Merci de ressayer plus tard");
+		}
+		
+		return users;
+	}
+	
+	@WebMethod(operationName="ajouterUtilisateur")
+	public boolean addUser(@WebParam(name="userName") String userName,@WebParam(name="password") String password,@WebParam(name="userType") User.UserType userType) {
+		List <User> users = getAllUsers();
+		boolean ok=true;
+		
+		for(int i=0;ok==true && i<users.size();i++) {
+			if(users.get(i).getUserName().equals(userName)==true) {
+				ok=false;
+				
+			}
+		}
+		
+		if(ok) {
+			User user = new User(userName,password,userType);
+			
+			BdAccess db = new BdAccess();
+			try {
+				Connection connection = db.connectToDB();
+				Statement statement = connection.createStatement();
+				String req = "INSERT INTO users (username,password,usertype) VALUES ('"+user.getUserName()+"','"+user.getPassWord()+"','"+user.getUserType().toString()+"')";
+				statement.execute(req);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				ok=false;
+				System.out.println("Nous rencontrons des problemes internes. Merci de ressayer plus tard");
+			}
+		}
+		
+		return ok;
+	
+	}
+	
+	@WebMethod(operationName="supprimerUtilisateur")
+	public boolean delUser(@WebParam(name="id") int id) {
+		boolean ok = true;
+		BdAccess db = new BdAccess();
+		try {
+			Connection connection = db.connectToDB();
+			Statement statement = connection.createStatement();
+			String req = "DELETE FROM users WHERE id='"+id+"'";
+			statement.execute(req);
+		} catch (SQLException e) {
+			ok = false;
+			e.printStackTrace();
+			System.out.println("Nous rencontrons des problemes internes. Merci de ressayer plus tard");
+		}
+		return ok;
+		
+	}
+	
+	@WebMethod(operationName="modifierUtilisateur")
+	public void updateUser(int id) {
+	}
+	
+	@WebMethod(operationName="seConnecter")
+	public User getConnected(@WebParam(name="userName") String userName,@WebParam(name="password") String password) {
+
+		User user=null;
+		BdAccess db = new BdAccess();
+		try {
+			Connection connection = db.connectToDB();
+			Statement statement = connection.createStatement();
+			String req = "SELECT * FROM users WHERE username='"+userName+"' and password='"+password+"'";
+			ResultSet rs = statement.executeQuery(req);
+//			System.out.println(rs.getInt("count"));
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				UserType userType = UserType.valueOf(rs.getString("usertype"));
+				
+				user = new User(id,userName,password,userType);
+				break; 
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("Nous rencontrons des problemes internes. Merci de ressayer plus tard");
+		}
+		return user;
+	}
+	
+}

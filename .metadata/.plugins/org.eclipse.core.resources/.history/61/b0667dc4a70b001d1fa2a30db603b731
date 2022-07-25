@@ -1,0 +1,117 @@
+package service;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import db.BdAcces;
+import db.BdAccess;
+import domaine.User;
+import domaine.User.UserType;
+
+@Path("/news")
+public class NewsRestService {
+	
+	@GET
+	@Path("/allArticles")
+	@Produces({MediaType.APPLICATION_XML})
+	public List <Article> getAllArticles(){
+		List <Article> articles=new ArrayList<Article>();
+		
+		BdAcces db = new BdAcces();
+		try {
+			Connection connection = db.connectToDB();
+			Statement statement = connection.createStatement();
+			String req = "SELECT * FROM Articles ";
+			ResultSet rs= statement.executeQuery(req);
+			while(rs.next()) {
+				int id = Integer.parseInt(rs.getString("articleId"));
+				String categorie = rs.getString("categorieArticle");
+				String nom = rs.getString("nomArticle");
+				String content = rs.getString("contentArticle");
+				String auteur = rs.getString("auteurArticle");
+				
+				Article article = new Article(id,categorie,nom,content,auteur);
+				articles.add(article);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Nous rencontrons des problemes internes. Merci de ressayer plus tard");
+		}
+		
+		return articles;
+	
+	}
+	@GET
+	@Path("/allArticlesOrderByCategory")
+	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+	public List <Article> getAllArticlesOrderByCategory(){
+List <Article> articles=new ArrayList<Article>();
+		
+		BdAcces db = new BdAcces();
+		try {
+			Connection connection = db.connectToDB();
+			Statement statement = connection.createStatement();
+			String req = "SELECT * FROM Articles ORDER BY categorieArticle DESC";
+			ResultSet rs= statement.executeQuery(req);
+			while(rs.next()) {
+				int id = Integer.parseInt(rs.getString("articleId"));
+				String categorie = rs.getString("categorieArticle");
+				String nom = rs.getString("nomArticle");
+				String content = rs.getString("contentArticle");
+				String auteur = rs.getString("auteurArticle");
+				
+				Article article = new Article(id,categorie,nom,content,auteur);
+				articles.add(article);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Nous rencontrons des problemes internes. Merci de ressayer plus tard");
+		}
+		
+		return articles;
+	}
+	
+	
+	@GET
+	@Path("/articlesForACategory/{categorieName}")
+	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+	public List <Article> getArticleByCategory(@PathParam (value="categorieName")String categorieName){
+List <Article> articles=new ArrayList<Article>();
+		
+		BdAcces db = new BdAcces();
+		try {
+			Connection connection = db.connectToDB();
+			Statement statement = connection.createStatement();
+			String req = "SELECT * FROM Articles WHERE categorieArticle='"+categorieName+"'";
+			ResultSet rs= statement.executeQuery(req);
+			while(rs.next()) {
+				int id = Integer.parseInt(rs.getString("articleId"));
+				String categorie = rs.getString("categorieArticle");
+				String nom = rs.getString("nomArticle");
+				String content = rs.getString("contentArticle");
+				String auteur = rs.getString("auteurArticle");
+				
+				Article article = new Article(id,categorie,nom,content,auteur);
+				articles.add(article);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Nous rencontrons des problemes internes. Merci de ressayer plus tard");
+		}
+		
+		return articles;
+	}
+	
+}
+
+

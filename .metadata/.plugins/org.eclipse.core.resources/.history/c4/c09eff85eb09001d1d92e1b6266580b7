@@ -1,0 +1,55 @@
+package domaine;
+
+import static domaine.User.UserType;
+import db.BdAccess;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+import javax.jws.WebParam;
+
+@WebService
+public class UserServices {
+	ArrayList<User> users=new ArrayList<User>();
+	
+	@WebMethod(operationName="listerUtilisateurs")
+	public List <User> getAllUsers() {
+		List<User> users=new ArrayList<User>();
+		return users;
+	}
+	
+	@WebMethod(operationName="ajouterUtilisateur")
+	public void addUser(String userName,String password,UserType userType) {
+		
+		User user = new User(userName,password,userType);
+		
+		BdAccess db = new BdAccess();
+		try {
+			Connection connection = db.connectToDB();
+			Statement statement = connection.createStatement();
+			String req = "INSERT INTO users (username,password,userType) VALUES ('"+user.getUserName()+"','"+user.getPassWord()+"','"+user.getUserType().toString()+"')";
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Nous rencontrons des problemes internes. Merci de ressayer plus tard");
+		}
+	
+	}
+	
+	@WebMethod(operationName="supprimerUtilisateur")
+	public void delUser(int id) {
+	}
+	
+	@WebMethod(operationName="modifierUtilisateur")
+	public void updateUser(int id) {
+	}
+	
+	@WebMethod(operationName="seConnecter")
+	public void getConnected(int id) {
+	}
+	
+}

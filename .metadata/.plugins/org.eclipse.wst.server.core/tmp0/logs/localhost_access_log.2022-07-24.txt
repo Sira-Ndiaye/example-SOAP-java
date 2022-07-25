@@ -1,0 +1,12 @@
+127.0.0.1 - - [24/Jul/2022:19:31:42 +0000] "GET / HTTP/1.1" 404 1005
+0:0:0:0:0:0:0:1 - - [24/Jul/2022:19:31:44 +0000] "GET /RestSW/WEB-INF/classes/service/Hello.java HTTP/1.1" 404 1003
+0:0:0:0:0:0:0:1 - - [24/Jul/2022:19:31:59 +0000] "GET /RestSW/WEB-INF/classes/service/Hello.java HTTP/1.1" 404 1003
+0:0:0:0:0:0:0:1 - - [24/Jul/2022:19:32:00 +0000] "GET /favicon.ico HTTP/1.1" 404 1027
+0:0:0:0:0:0:0:1 - - [24/Jul/2022:19:32:39 +0000] "GET /Hello/rest/bonjour HTTP/1.1" 404 1041
+127.0.0.1 - - [24/Jul/2022:19:43:53 +0000] "GET / HTTP/1.1" 404 1005
+127.0.0.1 - - [24/Jul/2022:19:44:37 +0000] "GET / HTTP/1.1" 404 1005
+0:0:0:0:0:0:0:1 - - [24/Jul/2022:19:44:37 +0000] "GET /RestWS/WEB-INF/classes/service/HelloRessource.java HTTP/1.1" 404 1003
+0:0:0:0:0:0:0:1 - - [24/Jul/2022:19:45:08 +0000] "GET /RestWS HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [24/Jul/2022:19:45:08 +0000] "GET /RestWS/ HTTP/1.1" 404 1019
+0:0:0:0:0:0:0:1 - - [24/Jul/2022:19:45:16 +0000] "GET /HelloRessource/ HTTP/1.1" 404 1035
+0:0:0:0:0:0:0:1 - - [24/Jul/2022:19:45:39 +0000] "GET /HelloRessource HTTP/1.1" 404 1033

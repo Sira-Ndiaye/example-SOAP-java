@@ -1,0 +1,54 @@
+package service;
+
+public class Article {
+	private int id;
+	private String categorie;
+	private String nom;
+	private String content;
+	private String auteur;
+	
+	public Article() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Article(int id, String categorie, String nom, String content, String auteur) {
+		super();
+		this.id = id;
+		this.categorie = categorie;
+		this.nom = nom;
+		this.content = content;
+		this.auteur = auteur;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getCategorie() {
+		return categorie;
+	}
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getAuteur() {
+		return auteur;
+	}
+	public void setAuteur(String auteur) {
+		this.auteur = auteur;
+	}
+	
+}

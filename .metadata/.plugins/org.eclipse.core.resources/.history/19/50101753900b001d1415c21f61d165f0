@@ -1,0 +1,6 @@
+package service;
+
+public class Article {
+	private int id;
+	private String categorie;
+}

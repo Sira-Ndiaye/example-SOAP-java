@@ -1,0 +1,9 @@
+package service;
+
+public class Article {
+	private int id;
+	private String categorie;
+	private String nom;
+	private String content;
+	private String auteur;
+}

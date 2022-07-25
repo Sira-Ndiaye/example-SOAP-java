@@ -1,0 +1,9 @@
+
+
+public class UserType{
+	enum UserType {
+		  visitor,
+		  editor,
+		  administrator
+		}
+}

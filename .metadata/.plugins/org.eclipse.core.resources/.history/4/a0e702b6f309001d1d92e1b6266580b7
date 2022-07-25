@@ -1,0 +1,9 @@
+package domaine;
+
+
+public class Client{
+	public static void main(String[] args) {
+		UserServices userServices= new UserServicesService().getUserServicesPort();
+		userServices.ajouterUtilisateur("Sira", "Ndiaye", UserType.VISITOR);
+	}
+}

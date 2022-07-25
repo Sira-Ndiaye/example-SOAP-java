@@ -1,0 +1,32 @@
+package domaine;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+import javax.jws.WebParam;
+
+@WebService
+public class UserServices {
+	@WebMethod(operationName="listerUtilisateurs")
+	public List <User> getAllUsers() {
+		List<User> users=new ArrayList<User>();
+		return users;
+	}
+	
+	@WebMethod(operationName="ajouterUtilisateur")
+	public void addUser() {
+	}
+	
+	@WebMethod(operationName="supprimerUtilisateur")
+	public void delUser() {
+	}
+	
+	@WebMethod(operationName="modifierUtilisateur")
+	public void updateUser() {
+	}
+	
+	
+}

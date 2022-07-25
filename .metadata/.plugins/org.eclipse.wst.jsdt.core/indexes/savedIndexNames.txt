@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+/home/sira/Documents/COURS/DIC2/2eSem/Architecture Logicielle/ProjetFinAnnee/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+2930505212.index
+2149203714.index
+890860177.index
+1449800919.index
+2582103017.index
+1538716116.index
